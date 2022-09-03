@@ -2,3 +2,9 @@ body {
   background-image: url("https://us.123rf.com/450wm/yamabikay/yamabikay1706/yamabikay170600015/79675835-green-felt-fabric-for-background-seamless-square-texture-tile-ready-high-resolution-photo-.jpg?ver=6");
   justify-content: center;
 }
+
+h1 {
+  color: black;
+  text-align: center;
+  font-weight: bold;
+}
