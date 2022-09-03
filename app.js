@@ -59,4 +59,73 @@ document.getElementById('hit').addEventListener('click', hit)
 document.getElementById('stand').addEventListener('click', stand)
 document.getElementById('deal').addEventListener('click', initialDeal)
 
-//Function
+//Functions
+init()
+//Initializes Deck
+function init() {
+  deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+}
+
+// render card class names to divs
+function renderCards() {
+	dealerDeckEl.innerHTML = ''
+	playerDeckEl.innerHTML = ''
+	playerHand.forEach(card => {
+		let newCardDiv = document.createElement('div')
+		newCardDiv.className = `card large ${card}`
+		playerDeckEl.appendChild(newCardDiv)
+	})
+	dealerHand.forEach((card, idx) => {
+		if (idx > 0) {
+			let newCardDiv = document.createElement('div')
+			newCardDiv.className = `card large back-red`
+		dealerDeckEl.appendChild(newCardDiv)			
+		} else {			
+			let newCardDiv = document.createElement('div')
+			newCardDiv.className = `card large ${card}`
+			dealerDeckEl.appendChild(newCardDiv)
+		}
+	})
+}
+
+function displayDealerCards(){
+	dealerDeckEl.innerHTML = ''
+	dealerHand.forEach((card, idx) => {
+		let newCardDiv = document.createElement('div')
+		newCardDiv.className = `card large ${card}`
+		dealerDeckEl.appendChild(newCardDiv)
+	})
+}
+
+//Sort function
+deck.sort(() => Math.random() - .5)
+
+function handleClick() {
+	if (deck.length > 0) {
+    let randIdx = Math.floor(Math.random() * deck.length)
+    let cardPicked = deck[randIdx]
+    playerHand.push(cardPicked)
+		render(cardPicked)
+	}
+}	
+
+function selectCard() {
+	if (deck.length > 0) {
+			let randIdx = Math.floor(Math.random() * deck.length)
+			let cardPicked = deck[randIdx]
+			deck.splice(randIdx, 1)			
+			return cardPicked
+		} else {
+			return 
+		}
+	}
+	
+function dealToPlayer() {
+	let playerCard = selectCard()
+	playerHand.push(playerCard)
+}
+	
+function dealToDealer(){
+	let dealerCard = selectCard()
+	dealerHand.push(dealerCard)
+}
